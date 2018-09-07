@@ -1,3 +1,9 @@
+/*
+to remember:
+-get/set O(1)-reandom access
+-insert O(n)-fixed capacity
+-delete O(n)-double when resize
+ */
 public class DynamicArray<String> {
     private Object[] data;
     private int size;
