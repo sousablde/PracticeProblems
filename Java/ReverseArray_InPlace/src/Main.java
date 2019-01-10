@@ -20,11 +20,22 @@ public class Main {
 
     public static void main(String[] args) {
         int[] intArray = {-22, -15, 1, 7, 20, 35, 55};
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.print(intArray[i] + " ");
+        }
+        System.out.println();
+        reverseArray(intArray);
+        System.out.println("After reversal");
+
+        for (int i = 0; i < intArray.length; i++) {
+            System.out.print(intArray[i] + " ");
+        }
+
     }
 
 
     //this is O(n)+ in-place so no need for extra memory
-    public int[] reverseArray(int[] intArray) {
+    public static int[] reverseArray(int[] intArray) {
         //first I will declare the pointer to the first and last item
         int startIndex = 0;
         int endIndex = intArray.length - 1;
@@ -36,13 +47,15 @@ public class Main {
             startIndex++;
             endIndex--;
         }
+
         return intArray;
     }
 
     //helper function to swap elements
-    private void swap(int[] intArray, int start, int end) {
+    private static void swap(int[] intArray, int start, int end) {
         int temp = intArray[start];
         intArray[start] = intArray[end];
         intArray[end] = temp;
     }
+
 }
