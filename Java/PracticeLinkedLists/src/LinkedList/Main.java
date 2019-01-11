@@ -19,9 +19,36 @@ use more memory for the pointers
 hard to navigate backwards in singly linked lists
 
  */
+package LinkedList;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        ListInterface<Integer> list = new LinkedList<Integer>();
+
+        list.insert(10);
+        list.insert(11);
+        list.insert(12);
+        list.insert(13);
+        list.insert(14);
+
+        list.traverseList();
+
+        list.remove(12);
+        list.traverseList();
+
+        ListInterface<Pet> list2 = new LinkedList<Pet>();
+        list2.insert(new Pet(2, "Mocha"));
+        list2.insert(new Pet(3, "Sirius"));
+        list2.insert(new Pet(1, "Nix"));
+        list2.insert(new Pet(5, "Minsk"));
+        list2.insert(new Pet(2, "DeeDee"));
+
+        list2.traverseList();
+
+
+
+
+
+
     }
 }
