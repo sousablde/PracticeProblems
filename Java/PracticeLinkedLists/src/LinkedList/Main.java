@@ -30,11 +30,29 @@ public class Main {
         list.insert(12);
         list.insert(13);
         list.insert(14);
+        list.insert(15);
+        list.insert(16);
+        list.insert(17);
+        list.insert(18);
+        list.insert(19);
+        list.insert(20);
 
+        System.out.println("Traversing initial list of integers: ");
         list.traverseList();
+        System.out.println();
+        System.out.println("****************************************");
 
+        System.out.println("Traversing list of integers post removal of 12: ");
         list.remove(12);
         list.traverseList();
+        System.out.println();
+        System.out.println("****************************************");
+
+        list.insert(12);
+        System.out.println("Traversing list of integers post insertion of 12: ");
+        list.traverseList();
+        System.out.println();
+        System.out.println("****************************************");
 
         ListInterface<Pet> list2 = new LinkedList<Pet>();
         list2.insert(new Pet(2, "Mocha"));
@@ -43,12 +61,13 @@ public class Main {
         list2.insert(new Pet(5, "Minsk"));
         list2.insert(new Pet(2, "DeeDee"));
 
+
         list2.traverseList();
-
-
-
-
-
+        System.out.println();
+        System.out.println("****************************************");
+        System.out.println("Trying to find the middle node (case one is 10 to 20): " + list.getMidNode());
+        System.out.println("****************************************");
+        System.out.println("Trying to find the middle node (case two are pets): " + list2.getMidNode());
 
     }
 }

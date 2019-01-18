@@ -5,6 +5,34 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T> {
     private Node<T> root;
     private int sizeOfList;
 
+
+    /*
+    Construct an in-place (without extra memory) algorithm that is able to find the middle node
+    naive solution: iterate through the list, count how many elements, traverse again return
+    index count/2 as the solution
+    using 2 pointers: O(N) first pointer traverses the linked list one node at a time
+    second pointer a slow pointer will traverse the list 2 nodes at a time
+    when the faster pointer reaches the end then the slower pointer is at the middle
+    Solution for finding the mid node
+     */
+    @Override
+    public Node<T> getMidNode() {
+        Node<T> fastPointer = this.root;
+        Node<T> slowPointer = this.root;
+
+        while (fastPointer.getNextNode() != null && fastPointer.getNextNode().getNextNode() != null) {
+            fastPointer = fastPointer.getNextNode().getNextNode();
+            slowPointer = slowPointer.getNextNode();
+        }
+        return slowPointer;
+    }
+
+    /*
+    Construct an in-place algorithm to reverse a linked list!
+     */
+
+
+
     @Override
     public void insert(T data) {
         ++this.sizeOfList;
@@ -68,7 +96,7 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T> {
         Node<T> currentNode = this.root;
 
         while (currentNode != null) {
-            System.out.println(currentNode + " ");
+            System.out.print(currentNode + " ");
             currentNode = currentNode.getNextNode();
         }
 
