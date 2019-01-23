@@ -13,4 +13,7 @@ public interface ListInterface<T extends Comparable<T>> {
     //finding the middle node of a list
     Node<T> getMidNode();
 
+    //reversing the linked list
+    void reverse();
+
 }

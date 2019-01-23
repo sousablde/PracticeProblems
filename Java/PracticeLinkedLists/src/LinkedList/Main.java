@@ -68,6 +68,14 @@ public class Main {
         System.out.println("Trying to find the middle node (case one is 10 to 20): " + list.getMidNode());
         System.out.println("****************************************");
         System.out.println("Trying to find the middle node (case two are pets): " + list2.getMidNode());
+        System.out.println("****************************************");
+
+
+        System.out.println("Reversing the list  ");
+        list.reverse();
+        list.traverseList();
+        System.out.println();
+        System.out.println("****************************************");
 
     }
 }

@@ -29,7 +29,28 @@ public class LinkedList<T extends Comparable<T>> implements ListInterface<T> {
 
     /*
     Construct an in-place algorithm to reverse a linked list!
+    naive: consider all the nodes one by one and construct another reversed linked list in reverse order O(N)
+    using pointers: O(N)
      */
+    @Override
+    public void reverse() {
+        //we have 3 pointers to current previous and next node
+        //and update the references
+
+        Node<T> currentNode = this.root;
+        Node<T> previousNode = null;
+        Node<T> nextNode = null;
+
+        //ITERATE UNTIL CURRENT node points to null
+        while (currentNode != null) {
+            nextNode = currentNode.getNextNode();
+            currentNode.setNextNode(previousNode);
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+        this.root = previousNode;//make what used to be the tail node the head
+    }
+
 
 
 
