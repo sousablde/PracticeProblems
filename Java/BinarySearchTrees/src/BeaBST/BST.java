@@ -1,7 +1,102 @@
 package BeaBST;
 
+
 public class BST<T extends Comparable<T>> implements Tree<T> {
     private Node<T> root;
+
+    /*
+    k-th smallest item in a bst
+    in-place algorithm to save memory
+    if k is smaller than the number of nodes in the left st-k-th smallest will have to be found in the left subtree
+    if k is greater than the number of nodes in the left st then we need to check the right st
+
+    for example if we are looking for the 5-th smallest item
+                                12
+                             /       \
+                            4        20
+                           /  \
+                          1    5
+    first we check the left subtree nodes
+    there are 3 nodes in the left subtree +1 root node so numOfNodes < k
+    we have to check the right subtree but we have to modify the k value
+    we reduce the problem to finding k-numOfNOdes(left subtree)
+    smallest item in the right subtree
+     */
+    @Override
+    public Node<T> getKSmallest(Node<T> node, int k) {
+
+        //number of nodes in the left subtree
+        //+1 because we count the root node of the subtree as well
+        int n = treeSize(node.getLeftChild()) + 1;
+
+        //this is when we find the kth smallest item
+        if (n == k) {
+            return node;
+        }
+
+        //if the number of nodes in the left subtree > k-th smallest item
+        //it means the k-th smallest item is in the left subtree
+        if (n > k) return getKSmallest(node.getLeftChild(), k);
+
+        //if the number of nodes in the left subtree is smaller then the k-th
+        //smallest item then we can discard the left subtree and consider the
+        //right substree
+        //NOW WE ARE NOT LOOKING FOR THE K-TH BUT THE K-Nth SMALLEST ITEM
+        if (n < k) return getKSmallest(node.getRightChild(), k - n);
+
+        return null;
+    }
+
+    //calculate the size of a subtree with root node 'node'
+    //recursive method
+    private int treeSize(Node<T> node) {
+
+        //this is the base case
+        if (node == null) return 0;
+
+        //recursively sum up the size of the left subtree + size of right subtree
+        // size of tree = size left subtree + size of right subtree + 1 (because of the root)
+        return (treeSize(node.getLeftChild()) + treeSize(node.getRightChild()) + 1);
+    }
+
+    @Override
+    public int getAgesSum() {
+        return getAges(this.root);
+    }
+
+
+    /*
+    we need an algo that returns the sum of all the parameters in the tree
+    we need to visit all the nodes in the tree
+    we have to do postOrder traversal yo keep the sum of ages at each node
+     */
+    private int getAges(Node<T> node) {
+
+        System.out.println("considering node " + node);
+
+        //we have to reinitialize the variables (sum is the parent's node value so the sum of the subtrees so far)
+        int sum = 0;
+        int leftSum = 0;
+        int rightSum = 0;
+
+        //null nodes have sum value 0
+        if (node == null) {
+            return 0;
+        }
+
+        //we do a simple post-order traversal because here we have to calculate both left and right value to
+        //be able to calculate the parent's value (sum of childrens' ages)
+        //check the left subtree recursively
+        leftSum = getAges(node.getLeftChild());
+        //check the right subtree recursively
+        rightSum = getAges(node.getRightChild());
+
+        //update the sum ... given node's value is the own value + left subtree sum + right subtree sum
+        System.out.println("Considering node " + node + " total ages so far is " + (((BSTfromObject) node.getData()).getAge() + leftSum + rightSum));
+        sum = ((BSTfromObject) node.getData()).getAge() + leftSum + rightSum;
+
+        return sum;
+    }
 
     @Override
     public Node<T> getRoot() {
