@@ -12,4 +12,8 @@ public interface Tree<T extends Comparable<T>> {
     T getMinV();
 
     Node<T> getRoot();
+
+    Node<T> getKSmallest(Node<T> node, int k);
+
+    int getAgesSum();
 }

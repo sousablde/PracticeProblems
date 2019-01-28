@@ -1,4 +1,4 @@
-
+package BeaBST;
 
 public class BSTfromObject implements Comparable<BSTfromObject> {
     private String name;
@@ -34,6 +34,5 @@ public class BSTfromObject implements Comparable<BSTfromObject> {
     public String toString() {
         return this.name + "-" + this.age;
     }
-
 
 }
